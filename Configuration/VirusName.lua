@@ -1,0 +1,1 @@
+return "C₆H₁₂O₆"
