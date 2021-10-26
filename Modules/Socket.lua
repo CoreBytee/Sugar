@@ -18,15 +18,15 @@ return function()
     
     -- Send a message opcode 2 with the payload of "Hello There!"
     Write({
-        payload = "Hello There! Succ"
+        payload = "Hello There!"
     })
     
-    -- Execute the code inside the for loop each time we receive a message and then wait for more
+    Write({
+        payload = "How are ya"
+    })
+
     for Message in Read do
-        -- Print the payload we got, since it is an echo server should be same as our request
         print("Host responded with " .. Message.payload)
-        -- Listen to more stuff ...
-        Response.socket:shutdown() -- Stop listening and close the connection
     end
     print("Connection closed!")
 
