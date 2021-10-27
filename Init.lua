@@ -1,5 +1,9 @@
 _G.VirusName = require("./Config/VirusName.lua")
 
+local RuntimeArgs = args
+RuntimeArgs[0] = nil
+table.remove(RuntimeArgs, 1)
+
 local Worked, Error = pcall(function()
 
     _G.Logger = require("Logger")
@@ -9,6 +13,13 @@ local Worked, Error = pcall(function()
     _G.Control = require("./Config/Control.lua")
     _G.RunType = require("./Config/RunType.lua")
 
+
+    if RuntimeArgs[1] == "true" then
+        Logger.Warn("Server override activating")
+        _G.RunType = false
+    end
+    
+
     if RunType == true then
         _G.RunTypeString = "Client"
     else
@@ -16,10 +27,9 @@ local Worked, Error = pcall(function()
     end
 
 
-
     Logger.Info(VirusName .. " started")
 
-    require("./Main.lua")
+    require("./Main.lua")()
 
 end)
 
