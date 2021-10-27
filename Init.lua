@@ -1,4 +1,5 @@
 _G.VirusName = require("./Config/VirusName.lua")
+_G.Logger = require("Logger")
 
 local RuntimeArgs = args
 RuntimeArgs[0] = nil
@@ -6,7 +7,6 @@ table.remove(RuntimeArgs, 1)
 
 local Worked, Error = pcall(function()
 
-    _G.Logger = require("Logger")
     _G.FS = require("fs")
     _G.Webstocket = require("coro-websocket")
     _G.WebLit = require("weblit")

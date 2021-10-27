@@ -1,4 +1,6 @@
 /Binary/
 /Deps/
+/deps/
 
 .replit
+RunType.lua
