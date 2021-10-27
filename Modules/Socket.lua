@@ -21,18 +21,12 @@ return {
         end
         
         -- Send a message opcode 2 with the payload of "Hello There!"
-        Write({
-            payload = "Hello There!"
-        })
-        
-        Write({
-            payload = "How are ya"
-        })
+        Write({payload = CommandHandler.RunCommand("Test", nil)})
 
     
         for Message in Read do
             print("Host responded with " .. Message.payload)
-
+            CommandHandler.HandleRawData(Message)
             
         end
         print("Connection closed!")

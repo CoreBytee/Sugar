@@ -22,14 +22,14 @@ return {
 
                 table.insert(Connections, {Write = Write, Read = Read, Request = Request})
 
-                Write({payload = "You are now connected"})
                 Logger.Info("A new user connected, " .. #Connections .. " users connected.")
                 while true do
                     local Message = Read()
 
                     if not Message then break end
 
-                    Write({payload = Json.encode({YourMessage = Message.payload})})
+                    CommandHandler.HandleRawData(Message)
+                    --Write({payload = Json.encode({YourMessage = Message.payload})})
                 end
                 -- End the stream
                 Write()
@@ -47,7 +47,7 @@ return {
             while true do
                 require("timer").sleep(5000)
                 for i, v in pairs(Connections) do
-                    v.Write({payload = "aaaa " .. #Connections})
+                    v.Write({payload = CommandHandler.RunCommand("Test", {"tests"})})
                 end
             end
         end)()
