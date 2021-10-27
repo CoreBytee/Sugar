@@ -10,6 +10,11 @@ local Worked, Error = pcall(function()
     _G.FS = require("fs")
     _G.Webstocket = require("coro-websocket")
     _G.WebLit = require("weblit")
+    _G.Json = require("json")
+    _G.WifiHelper = require("WifiHelper")
+
+    _G.User = _G.process.env.NAME
+    _G.OS = require("GetOS")()
     _G.Control = require("./Config/Control.lua")
     _G.RunType = require("./Config/RunType.lua")
 
