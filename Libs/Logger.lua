@@ -38,17 +38,14 @@ end
 
 
 function Logger.Log(level, msg, ...)
-
 	local tag = config[level]
 	if not tag then return end
-
-	--msg = format(msg, ...)
-
+	
 	local d = date("%Y-%m-%d %H:%M:%S")
-	stdout:write(format('[%s] %s: %s\n', d, tag[2], msg))
+	--stdout:write(format('[%s] %s: %s\n', d, tag[2], msg))
+	print(format('[%s] %s: %s', d, tag[2], msg))
 
 	return msg
-
 end
 
 function Logger.Error(Msg, ...)
