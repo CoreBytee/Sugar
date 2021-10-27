@@ -3,7 +3,7 @@ return {
 	version = '69.69.69',
 	homepage = '',
 	dependencies = {
-				"creationix/coro-http",
+		"creationix/coro-http",
         "creationix/coro-websocket",
         "creationix/weblit",
         "luvit/secure-socket"
