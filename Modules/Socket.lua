@@ -19,8 +19,6 @@ return {
         if not Response then
             print("Error establishing connection! (" .. Read .. ")"); return
         end
-
-        p(Response)
         
         -- Send a message opcode 2 with the payload of "Hello There!"
         Write({
@@ -31,7 +29,6 @@ return {
             payload = "How are ya"
         })
 
-        p("a ea raaera")
     
         for Message in Read do
             print("Host responded with " .. Message.payload)
