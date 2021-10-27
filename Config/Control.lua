@@ -1,4 +1,8 @@
 return {
-    Socket = "localhost",
-    Web = "localhost"
+    SocketHost = "localhost",
+    SocketPath = "/controlsocket",
+    SocketPort = 6126,
+
+    Web = "localhost",
+
 }
