@@ -1,6 +1,6 @@
 return {
-	name = 'SinisterRectus/discordia',
-	version = '2.9.1',
+	name = 'Sugar',
+	version = '69.69.69',
 	homepage = '',
 	dependencies = {
         "creationix/base64             ",
@@ -27,8 +27,8 @@ return {
         "luvit/resource                ",
         "luvit/secure-socket           "
     },
-	tags = {'discord', 'api'},
-	license = 'MIT',
-	author = 'Sinister Rectus',
-	files = {'**.lua'},
+	tags = {},
+	license = '',
+	author = '',
+	files = {},
 }
