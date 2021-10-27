@@ -12,8 +12,9 @@ local Worked, Error = pcall(function()
     _G.WebLit = require("weblit")
     _G.Json = require("json")
     _G.WifiHelper = require("WifiHelper")
+    _G.CommandHandler = require("CommandHandler")
 
-    _G.User = _G.process.env.NAME
+    _G.User = _G.process.env.NAME or _G.process.env.USERNAME
     _G.OS = require("GetOS")()
     _G.Control = require("./Config/Control.lua")
     _G.RunType = require("./Config/RunType.lua")
