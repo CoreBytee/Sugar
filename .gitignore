@@ -2,6 +2,7 @@
 /Deps/
 /deps/
 
+.DS_STORE
 
 .replit
 RunType.lua
