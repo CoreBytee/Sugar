@@ -22,6 +22,8 @@ return {
 
                 table.insert(Connections, {Write = Write, Read = Read, Request = Request})
 
+                Write("{}")
+
                 Logger.Info("A new user connected, " .. #Connections .. " users connected.")
                 while true do
                     local Message = Read()
