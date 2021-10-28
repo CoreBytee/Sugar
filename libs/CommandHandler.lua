@@ -7,7 +7,7 @@ Library.AddCommand = function(Name, CommandFunction)
 end
 
 Library.HandleCommand = function(Data)
-    Commands[Data.Name].Run(Data.Params)
+    coroutine.wrap(Commands[Data.Name].Run)(Data.Params)
 end
 
 Library.HandleRawData = function(Message)
