@@ -5,7 +5,6 @@ return {
     Module = function()
 
         print("socket loaded")
-        p(Control.SocketHost)
     
         local Response, Read, Write = Webstocket.connect({
             host = Control.SocketHost,
