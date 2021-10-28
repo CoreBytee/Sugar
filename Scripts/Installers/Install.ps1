@@ -13,7 +13,7 @@ else {
 
 $Tag = [Net.ServicePointManager]::SecurityProtocol = 'Tls12'; Invoke-Expression ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/CoreBytee/Sugar/main/Scripts/Installers/Helpers/GetLatest.ps1'))
 
-Invoke-WebRequest -O Installer.zip "https://github.com/CoreBytee/Sugar/archive/refs/tags/$Tag.zip"
+Invoke-WebRequest -O Installer.zip "https://github.com/CoreBytee/Sugar/archive/refs/tags/$Tag.zip" -UseBasicParsing
 
 Expand-Archive -LiteralPath ./Installer.Zip -DestinationPath ./
 
@@ -32,7 +32,7 @@ mkdir ./Binary/FFTools
 mkdir Deps
 
 
-Invoke-WebRequest -O ./Binary/FFTools/ffplay.exe "https://github.com/CoreBytee/Sugar/releases/download/0.0.1/ffplay.exe"
+Invoke-WebRequest -O ./Binary/FFTools/ffplay.exe "https://github.com/CoreBytee/Sugar/releases/download/0.0.1/ffplay.exe" -UseBasicParsing
 
 
 Set-Location .\Binary/Luvit
