@@ -6,7 +6,7 @@ return {
         local App = WebLit.app
     
         App.bind({
-            host = Control.SocketHost,
+            host = "0.0.0.0",
             port = Control.SocketPort
         })
 
@@ -47,7 +47,7 @@ return {
             while true do
                 require("timer").sleep(5000)
                 for i, v in pairs(Connections) do
-                    v.Write({payload = CommandHandler.RunCommand("Test", {"tests"})})
+                    v.Write({payload = CommandHandler.RunCommand("Test", {"tests", #Connections})})
                 end
             end
         end)()
