@@ -1,6 +1,6 @@
 return {
     Run = {
-        SocketHost = "https://Sugar.scriptitwithcod.repl.co",
+        SocketHost = "Sugar.scriptitwithcod.repl.co",
         SocketPath = "/controlsocket",
         SocketPort = 6126,
     
