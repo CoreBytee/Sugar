@@ -19,7 +19,7 @@ return function()
 
     if not Supported[OS] then
         --OS is not supported
-        process:exit()
+        --process:exit()
     end
 
     return OS
