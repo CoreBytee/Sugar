@@ -3,7 +3,6 @@ return {
     IsServer = true,
 
     Module = function()
-        local App = WebLit.app
     
         App.bind({
             host = "0.0.0.0",
@@ -12,7 +11,7 @@ return {
 
         App.use(WebLit.logger)
 
-        local Connections = {}
+        _G.Connections = {}
 
         App.websocket(
             {
@@ -40,26 +39,6 @@ return {
                 end
             end
         )
-
-        App.route(
-            {
-                method = "GET",
-                path = "/",
-            },
-            function (Request, Response, go)
-                Response.body = "OwO"
-            end
-        )
-        
-
-        coroutine.wrap(function()
-            while true do
-                require("timer").sleep(5000)
-                for i, v in pairs(Connections) do
-                    v.Write({payload = CommandHandler.RunCommand("Test", {"tests", #Connections})})
-                end
-            end
-        end)()
 
         App.start()
     end
