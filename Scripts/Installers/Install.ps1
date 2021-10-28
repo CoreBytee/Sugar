@@ -13,8 +13,11 @@ else {
 
 $Tag = [Net.ServicePointManager]::SecurityProtocol = 'Tls12'; Invoke-Expression ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/CoreBytee/Sugar/main/Scripts/Installers/Helpers/GetLatest.ps1'))
 
+Write-Output "Tag is $Tag"
+Write-Output "Downloading Sugar"
 Invoke-WebRequest -O Installer.zip "https://github.com/CoreBytee/Sugar/archive/refs/tags/$Tag.zip" -UseBasicParsing
 
+Write-Output "Unpacking"
 Expand-Archive -LiteralPath ./Installer.Zip -DestinationPath ./
 
 Write-Host "Removing ZIP"
@@ -25,28 +28,26 @@ Move-Item "Sugar-$Tag/" Sugar
 
 Set-Location Sugar
 
+Write-Output "Making folders"
 mkdir .\Binary
 mkdir ./Binary/Luvit
 mkdir ./Binary/FFTools
 
 mkdir Deps
 
-
+Write-Output "Downloading ffplay"
 Invoke-WebRequest -O ./Binary/FFTools/ffplay.exe "https://github.com/CoreBytee/Sugar/releases/download/0.0.1/ffplay.exe" -UseBasicParsing
+Write-Output "Downloading luvit"
+Invoke-WebRequest -O ./Binary/Luvit/luvit.exe "https://github.com/CoreBytee/Sugar/releases/download/0.0.1/luvit.exe" -UseBasicParsing
+Write-Output "Downloading lit"
+Invoke-WebRequest -O ./Binary/Luvit/lit.exe "https://github.com/CoreBytee/Sugar/releases/download/0.0.1/lit.exe" -UseBasicParsing
 
 
-Set-Location .\Binary/Luvit
-
-
-PowerShell -NoProfile -ExecutionPolicy unrestricted -Command "[Net.ServicePointManager]::SecurityProtocol = 'Tls12'; iex ((new-object net.webclient).DownloadString('https://github.com/luvit/lit/raw/master/get-lit.ps1'))"
-
-Set-Location ..
-Set-Location ..
-
+Write-Output "Installing luvit packages"
 ./Binary/Luvit/lit install
 
 
-
+Write-Output "Finishing"
 $Value = ""
 $Value += '{"Tag-Version": "'
 $Value += $Tag

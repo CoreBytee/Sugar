@@ -49,6 +49,4 @@ end)
 
 if not Worked then
     Logger.Error(VirusName .. " failed with " .. Error)
-else
-    Logger.Info(VirusName .. " shut down successfully!")
 end
