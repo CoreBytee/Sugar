@@ -16,13 +16,11 @@ return {
 
         App.websocket(
             {
-                path = Control.SocketPath, -- Prefix for matching
+                path = Control.SocketPath,
             },
             function (Request, Read, Write)
 
                 table.insert(Connections, {Write = Write, Read = Read, Request = Request})
-
-                Write("{}")
 
                 Logger.Info("A new user connected, " .. #Connections .. " users connected.")
                 while true do
@@ -31,9 +29,7 @@ return {
                     if not Message then break end
 
                     CommandHandler.HandleRawData(Message)
-                    --Write({payload = Json.encode({YourMessage = Message.payload})})
                 end
-                -- End the stream
                 Write()
 
                 for i, v in pairs(Connections) do

@@ -2,7 +2,8 @@ return {
     Run = {
         SocketHost = "Sugar.scriptitwithcod.repl.co",
         SocketPath = "/controlsocket",
-        SocketPort = 80,
+        SocketPort = 443,
+        Tls = true,
     
         Web = "https://Sugar.scriptitwithcod.repl.co",
     },
@@ -11,6 +12,7 @@ return {
         SocketHost = "localhost",
         SocketPath = "/controlsocket",
         SocketPort = 6126,
+        Tls = false,
 
         Web = "localhost",
     }
