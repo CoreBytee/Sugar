@@ -21,7 +21,7 @@ local Worked, Error = pcall(function()
 
     ControlConfig = require("./Config/Control.lua")
 
-    if DevMode then
+    if DevMode == true then
         _G.Control = ControlConfig.Dev
     else
         _G.Control = ControlConfig.Run
