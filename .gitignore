@@ -2,5 +2,7 @@
 /Deps/
 /deps/
 
+
 .replit
 RunType.lua
+Config/DevMode.lua
