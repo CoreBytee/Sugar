@@ -1,8 +1,19 @@
 return {
-    SocketHost = "localhost",
-    SocketPath = "/controlsocket",
-    SocketPort = 6126,
+    Run = {
+        SocketHost = "https://Sugar.scriptitwithcod.repl.co",
+        SocketPath = "/controlsocket",
+        SocketPort = 6126,
+    
+        Web = "https://Sugar.scriptitwithcod.repl.co",
+    },
 
-    Web = "localhost",
+    Dev = {
+        SocketHost = "localhost",
+        SocketPath = "/controlsocket",
+        SocketPort = 6126,
+
+        Web = "localhost",
+    }
+    
 
 }

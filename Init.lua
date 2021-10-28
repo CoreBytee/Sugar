@@ -16,9 +16,16 @@ local Worked, Error = pcall(function()
 
     _G.User = _G.process.env.NAME or _G.process.env.USERNAME
     _G.OS = require("GetOS")()
-    _G.Control = require("./Config/Control.lua")
     _G.RunType = require("./Config/RunType.lua")
+    _G.DevMode = require("./Config/DevMode.lua")
 
+    ControlConfig = require("./Config/Control.lua")
+
+    if DevMode then
+        _G.Control = ControlConfig.Dev
+    else
+        _G.Control = ControlConfig.Run
+    end
 
     if RuntimeArgs[1] == "true" then
         Logger.Warn("Server override activating")
