@@ -43,6 +43,17 @@ return {
             end
         )
 
+        App.route(
+            {
+                method = "GET",
+                path = "/",
+            },
+            function (Request, Response, go)
+                Response.body = "OwO"
+            end
+        )
+        
+
         coroutine.wrap(function()
             while true do
                 require("timer").sleep(5000)
