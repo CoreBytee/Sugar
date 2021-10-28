@@ -10,6 +10,7 @@ local Worked, Error = pcall(function()
     _G.FS = require("fs")
     _G.Webstocket = require("coro-websocket")
     _G.WebLit = require("weblit")
+    _G.App = WebLit.app
     _G.Json = require("json")
     _G.WifiHelper = require("WifiHelper")
     _G.CommandHandler = require("CommandHandler")
