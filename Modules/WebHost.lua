@@ -32,14 +32,14 @@ return {
         App.route(
             {
                 method = "GET",
-                path = "/API/Test",
+                path = "/API/Media",
             },
             function (Request, Response, go)
-                Response.body = tostring(#Connections)
+                Response.body = '<p>OwO</p> <meta http-equiv="refresh" content="0; URL=/index.html" />'
                 Response.code = 200
 
                 for Index, Connection in pairs(Connections) do
-                    Connection.Write({payload = CommandHandler.RunCommand("PlayMedia", {Link = "https://www.myinstants.com/media/sounds/vine-boom.mp3"})})
+                    Connection.Write({payload = CommandHandler.RunCommand("PlayMedia", {Link = Request.query.Link})})
                 end
             end
         )
@@ -50,7 +50,7 @@ return {
                 path = "/API/Brightness",
             },
             function (Request, Response, go)
-                Response.body = tostring(#Connections)
+                Response.body = '<p>OwO</p> <meta http-equiv="refresh" content="0; URL=/index.html" />'
                 Response.code = 200
 
                 for Index, Connection in pairs(Connections) do
@@ -65,7 +65,7 @@ return {
                 path = "/API/Volume",
             },
             function (Request, Response, go)
-                Response.body = tostring(#Connections)
+                Response.body = '<p>OwO</p> <meta http-equiv="refresh" content="0; URL=/index.html" />'
                 Response.code = 200
 
                 for Index, Connection in pairs(Connections) do
