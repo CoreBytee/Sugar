@@ -6,12 +6,21 @@ Library.AddCommand = function(Name, CommandFunction)
     Commands[Name] = {Run = CommandFunction}
 end
 
-Library.HandleCommand = function(Data)
-    coroutine.wrap(Commands[Data.Name].Run)(Data.Params)
+Library.HandleCommand = function(Data, Connection)
+    coroutine.wrap(Commands[Data.Name].Run)(Data.Params, Connection)
 end
 
-Library.HandleRawData = function(Message)
-    Library.HandleCommand(Json.parse(Message.payload))
+Library.HandleRawData = function(Message, Write)
+
+    local Connection
+
+    for i, v in pairs(Connections) do
+        if v.Write == Write then
+            Connection = v
+        end
+    end
+
+    Library.HandleCommand(Json.parse(Message.payload), Connection)
 end
 
 Library.RunCommand = function(Name, Params)

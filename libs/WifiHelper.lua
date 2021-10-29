@@ -2,7 +2,7 @@ return {
     GetConnectedWifi = function()
 
         local Commands = {
-            Windows = "",
+            Windows = "Powershell.exe -Command \"(get-netconnectionProfile).Name\"",
             OSX = "/System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -I | awk -F: '/ SSID/{print $2}'"
         }
 
@@ -17,6 +17,6 @@ return {
     
         Handle:close()
 
-        return string.sub(Name, 2)
+        return Name
     end
 }
