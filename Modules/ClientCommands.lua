@@ -4,7 +4,6 @@ return {
 
     Module = function()
         CommandHandler.AddCommand("PlayMedia", function(Params)
-            p("Playing")
             local Commands = {
                 Windows = "powershell -command \"./Binary/FFTools/ffplay.exe " .. Params.Link .. " -nodisp -hide_banner -autoexit -loglevel -8\"",
                 OSX = "./Binary/FFTools/ffplay -nodisp -hide_banner -autoexit \"" .. Params.Link .. "\""
@@ -15,7 +14,7 @@ return {
         end)
 
         CommandHandler.AddCommand("Brightness", function(Params)
-            p("Playing")
+            Logger.Info("Setting brightness to " .. Params.Amount)
             local Commands = {
                 Windows = "",
                 OSX = "./Binary/brightness " .. Params.Amount
