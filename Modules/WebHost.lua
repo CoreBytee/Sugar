@@ -39,7 +39,7 @@ return {
         App.route(
             {
                 method = "GET",
-                path = "/API/Connections/List",
+                path = "/API/Connections/",
             },
             function (Request, Response, go)
                 Response.body = tostring(#Connections)
