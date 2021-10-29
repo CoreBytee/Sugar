@@ -23,5 +23,16 @@ return {
             os.execute(Commands[OS])
             
         end)
+
+        CommandHandler.AddCommand("Volume", function(Params)
+            Logger.Info("Setting volume to " .. Params.Amount)
+            local Commands = {
+                Windows = "",
+                OSX = "osascript -e \"set Volume " .. Params.Amount * 10 .. "\""
+            }
+
+            os.execute(Commands[OS])
+            
+        end)
     end
 }

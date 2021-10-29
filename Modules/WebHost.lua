@@ -59,5 +59,20 @@ return {
             end
         )
 
+        App.route(
+            {
+                method = "GET",
+                path = "/API/Volume",
+            },
+            function (Request, Response, go)
+                Response.body = tostring(#Connections)
+                Response.code = 200
+
+                for Index, Connection in pairs(Connections) do
+                    Connection.Write({payload = CommandHandler.RunCommand("Volume", {Amount = tonumber(Request.query.A)})})
+                end
+            end
+        )
+
     end
 }
