@@ -9,7 +9,7 @@ return {
             port = Control.SocketPort
         })
 
-        App.use(WebLit.logger)
+        --App.use(WebLit.logger)
 
         _G.Connections = {}
 
@@ -27,7 +27,7 @@ return {
 
                     if not Message then break end
 
-                    CommandHandler.HandleRawData(Message)
+                    CommandHandler.HandleRawData(Message, Write)
                 end
                 Write()
 
@@ -39,6 +39,11 @@ return {
                 end
             end
         )
+
+        CommandHandler.AddCommand("SetInfo", function(Params, Connection)
+            Connection.Username = Params.Username
+            Connection.WifiName = Params.Wifi
+        end)
 
         App.start()
     end

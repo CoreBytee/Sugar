@@ -21,7 +21,25 @@ return {
         App.route(
             {
                 method = "GET",
-                path = "/API/Connections",
+                path = "/API/Connections/List",
+            },
+            function (Request, Response, go)
+
+                local Body = ""
+
+                for Index, Connection in pairs(Connections) do
+                    Body = Body .. "'" .. Connection.Username .. "' - '" .. Connection.WifiName .. "'\n"
+                end
+
+                Response.body = Body
+                Response.code = 200
+            end
+        )
+
+        App.route(
+            {
+                method = "GET",
+                path = "/API/List",
             },
             function (Request, Response, go)
                 Response.body = tostring(#Connections)

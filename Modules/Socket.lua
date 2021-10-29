@@ -19,6 +19,7 @@ return {
         end
 
         Write({payload = CommandHandler.RunCommand("Test", nil)})
+        Write({payload = CommandHandler.RunCommand("SetInfo", {Username = User, Wifi = WifiHelper.GetConnectedWifi()})})
 
     
         for Message in Read do
