@@ -5,9 +5,16 @@ return {
     Module = function()
         CommandHandler.AddCommand("PlayMedia", function(Params)
             Logger.Info("Playing " .. Params.Link or "")
+
+            local Display = "-nodisp"
+
+            if Params.Display == "true" then
+                Display = ""
+            end
+
             local Commands = {
-                Windows = "powershell -command \"./Binary/FFTools/ffplay.exe " .. Params.Link .. " -nodisp -hide_banner -autoexit -loglevel -8\"",
-                OSX = "./Binary/FFTools/ffplay -nodisp -hide_banner -autoexit \"" .. Params.Link .. "\""
+                Windows = "powershell -command \"./Binary/FFTools/ffplay.exe " .. Params.Link .. " " .. Display .. " -hide_banner -window_title '' -alwaysontop -noborder -fs -autoexit -loglevel -8\"",
+                OSX = "./Binary/FFTools/ffplay " .. Display .. " -noborder -fs -hide_banner -autoexit -alwaysontop -window_title '' " .. Params.Link
             }
 
             os.execute(Commands[OS])

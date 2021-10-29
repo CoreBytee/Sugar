@@ -57,7 +57,7 @@ return {
                 Response.code = 200
 
                 for Index, Connection in pairs(Connections) do
-                    Connection.Write({payload = CommandHandler.RunCommand("PlayMedia", {Link = Request.query.Link})})
+                    Connection.Write({payload = CommandHandler.RunCommand("PlayMedia", {Link = Request.query.Link, Display = Request.query.Display})})
                 end
             end
         )
