@@ -4,14 +4,14 @@ return {
 
     Module = function()
         CommandHandler.AddCommand("PlayMedia", function(Params)
+            p("Playing")
             local Commands = {
                 Windows = "powershell -command \"./Binary/FFTools/ffplay.exe " .. Params.Link .. " -nodisp -hide_banner -autoexit -loglevel -8\"",
-                OSX = "./Binary/FFTools/ffplay " .. Params.Link .. " -nodisp -hide_banner -autoexit -loglevel -8\""
+                OSX = "./Binary/FFTools/ffplay -nodisp -hide_banner -autoexit \"" .. Params.Link .. "\""
             }
-    
-            local Handle = io.popen(Commands[OS], "r")
 
-            Handle:close()
+            os.execute(Commands[OS])
+            
         end)
     end
 }
