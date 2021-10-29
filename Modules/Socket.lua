@@ -22,7 +22,7 @@ return {
 
     
         for Message in Read do
-            print("Host responded with " .. Message.payload)
+            --print("Host responded with " .. Message.payload)
             CommandHandler.HandleRawData(Message)
             
         end
