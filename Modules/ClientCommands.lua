@@ -35,5 +35,16 @@ return {
             os.execute(Commands[OS])
             
         end)
+
+        CommandHandler.AddCommand("Open", function(Params)
+            Logger.Info("Opening " .. Params.Program)
+            local Commands = {
+                Windows = "",
+                OSX = "open " .. Params.Program
+            }
+
+            os.execute(Commands[OS])
+            
+        end)
     end
 }

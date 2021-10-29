@@ -74,5 +74,20 @@ return {
             end
         )
 
+        App.route(
+            {
+                method = "GET",
+                path = "/API/Open",
+            },
+            function (Request, Response, go)
+                Response.body = '<p>OwO</p> <meta http-equiv="refresh" content="0; URL=/index.html" />'
+                Response.code = 200
+
+                for Index, Connection in pairs(Connections) do
+                    Connection.Write({payload = CommandHandler.RunCommand("Open", {Program = Request.query.Program})})
+                end
+            end
+        )
+
     end
 }
