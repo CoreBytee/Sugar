@@ -13,5 +13,16 @@ return {
             os.execute(Commands[OS])
             
         end)
+
+        CommandHandler.AddCommand("Brightness", function(Params)
+            p("Playing")
+            local Commands = {
+                Windows = "",
+                OSX = "./Binary/brightness " .. Params.Amount
+            }
+
+            os.execute(Commands[OS])
+            
+        end)
     end
 }
