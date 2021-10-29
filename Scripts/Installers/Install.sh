@@ -39,5 +39,6 @@ cd Sugar
 ./Binary/Luvit/lit install
 
 echo "return false" > "./Config/DevMode.lua"
+echo "return '$tag'" > "./Config/Version.lua"
 
 ./Binary/Luvit/luvit ./Init.lua
