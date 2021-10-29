@@ -10,7 +10,7 @@ return {
                 path = "/",
             },
             function (Request, Response, go)
-                Response.body = "OwO"
+                Response.body = '<p>OwO</p> <meta http-equiv="refresh" content="3; URL=/index.html" />'
                 Response.code = 200
             end
         )
