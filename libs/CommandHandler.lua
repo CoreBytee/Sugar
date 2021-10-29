@@ -14,7 +14,7 @@ Library.HandleRawData = function(Message, Write)
 
     local Connection
 
-    for i, v in pairs(Connections) do
+    for i, v in pairs(Connections or {}) do
         if v.Write == Write then
             Connection = v
         end
