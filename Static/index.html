@@ -1,12 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test</title>
-</head>
-<body>
-    
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Panel</title>
+    </head>
+
+    <body>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <form action="/API/Media" method="get">
+            <p>Media</p>
+            <label for="volume">Link</label>
+            <input type="text" id="volume" name="Link" value="">
+            <input type="submit" value="Send to clients">
+        </form>
+
+        <form action="/API/Brightness" method="get">
+            <p>Brightness</p>
+            <label for="volume">Amount (1/10)</label>
+            <input type="number" id="volume" name="A" value="0">
+            <input type="submit" value="Send to clients">
+        </form>
+
+        <form action="/API/Volume" method="get">
+            <p>Volume</p>
+            <label for="volume">Amount (1/10)</label>
+            <input type="number" id="volume" name="A" value="0">
+            <input type="submit" value="Send to clients">
+        </form>
+    </body>
 </html>
