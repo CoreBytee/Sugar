@@ -3,6 +3,16 @@
     <head>
         <meta charset="UTF-8">
         <title>Panel</title>
+        <script src="./Request.js" type="module"></script>
+
+        <script type="module">
+            import { WebRequest } from './Request.js'
+
+            var WebData = await WebRequest("GET", "https://sugar.scriptitwithcod.repl.co/API/Connections")
+
+            
+            document.getElementById("Connected").innerText = WebData.Body + " clients connected"
+        </script>
     </head>
 
     <body>
@@ -14,6 +24,10 @@
         <br>
         <br>
         <br>
+
+        <div>
+            <a id="Connected">Loading</a>
+        </div>
 
         <form action="/API/Media" method="get">
             <p>Media</p>
