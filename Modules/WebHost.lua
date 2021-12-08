@@ -15,6 +15,20 @@ return {
             end
         )
 
+        App.route(
+            {
+                method = "GET",
+                path = "/API/tag",
+            },
+            function (Request, Response, go)
+                local Response, Body = require("coro-http").request("GET", "https://api.github.com/repos/CoreBytee/Sugar/releases", {{"User-Agent", "Sugarrrrr"}})
+                p(Body)
+                p(require("json").parse(Body))
+                Response.body = require("json").parse(Body)[0].tag_name
+                Response.code = 200
+            end
+        )
+
         local Static = require('weblit-static')
         App.use(Static("./Static/"))
 
