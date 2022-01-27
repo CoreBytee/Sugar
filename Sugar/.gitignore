@@ -1,0 +1,10 @@
+/Binary/
+/Deps/
+/deps/
+
+.DS_STORE
+
+.replit
+RunType.lua
+Config/DevMode.lua
+nohup.out
