@@ -2,7 +2,8 @@ local Package = {}
 
 function Package.OnInitialize()
 
-    Import("ga.corebyte.Sugar.Boot.Boot")
+    print("And The package has loaded!")
+    print("Hello!")
 
 end
 

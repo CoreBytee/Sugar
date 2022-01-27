@@ -1,38 +1,38 @@
 {
-  "Code":{
-    "nl.cubic-inc.logger.LoggerClass":"local Logger = Emitter:extend()\n\nlocal date = os.date\nlocal format = string.format\nlocal stdout = _G.process.stdout.handle\n\n\nlocal RED     = 31\nlocal YELLOW  = 33\nlocal GREEN   = 32\nlocal CYAN    = 36\n\nlocal config = {\n\t{'[ERROR]  ', RED},\n\t{'[WARNING]', YELLOW},\n\t{'[INFO]   ', GREEN},\n\t{'[DEBUG]  ', CYAN},\n}\n\nfunction Logger:initialize(Settings)\n\tSettings = Settings or {}\n    Settings.Debug = Settings.Debug or false\n\n    self.DebugMode = Settings.Debug\nend\n\ndo -- parse config\n\tlocal bold = 1\n\tfor _, v in ipairs(config) do\n\t\tv[2] = format('\\27[%i;%im%s\\27[0m', bold, v[2], v[1])\n\tend\nend\n\n\nfunction Logger:Log(level, msg)\n\n\tlocal tag = config[level]\n\tif not tag then return end\n\n\tlocal d = date(\"%Y-%m-%d %H:%M:%S\")\n\tstdout:write(format('[%s] %s: %s\\n', d, tag[2], msg))\n\n\treturn msg\n\nend\n\nfunction Logger:Error(Msg)\n\tself:Log(1, Msg)\n\tself:emit(\"Error\", Msg)\nend\n\nfunction Logger:Warn(Msg)\n\tself:Log(2, Msg)\n\tself:emit(\"Warning\", Msg)\nend\n\nfunction Logger:Info(Msg)\n\tself:Log(3, Msg)\n\tself:emit(\"Information\", Msg)\nend\n\nfunction Logger:Debug(Msg)\n\tif self.DebugMode == true then\n\t\tself:Log(4, Msg)\n\t\tself:emit(\"Debug\", Msg)\n\tend\nend\n\nreturn Logger",
-    "nl.cubic-inc.logger.Main":"local Logger = Import(\"nl.cubic-inc.logger.LoggerClass\")\n\nreturn Logger",
-    "nl.cubic-inc.logger.Test":"local Package = {}\n\nfunction Package.OnInitialize()\n    local Logger = Import(\"nl.cubic-inc.logger.Main\"):new({Debug = true})\n\n\n    Logger:on(\"Information\", print)\n\n    Logger:Info(\"test\", \"test\")\n    Logger:Warn(\"test\")\n    Logger:Error(\"test\")\n    Logger:Debug(\"test\")\n\nend\n\nreturn Package"
-  },
   "Resources":{
-    "/package.info.lua":"cmV0dXJuIHsKCiAgICBJbmZvVmVyc2lvbiA9IDEsIC0tIERvbnQgdG91Y2ggdGhpcwoKICAgIElEID0gIkxvZ2dlciIsIC0tIEEgdW5pcXVlIGlkIAogICAgVmVyc2lvbiA9ICIwLjAuMSIsIC0tIFRoZSBwYWNrYWdlIHZlcnNpb24KCgogICAgTmFtZSA9ICJMb2dnZXIiLCAtLSBUaGUgbmFtZSBvZiB0aGUgcHJvamVjdCwgY2FuIHVzZSBzcGFjZXMKICAgIERlc2NyaXB0aW9uID0gIlRoZSBEdWEgTG9nZ2VyIiwgLS0gRGVzY3JpcHRpb24KCiAgICBBdXRob3IgPSB7CiAgICAgICAgRGV2ZWxvcGVycyA9IHsKICAgICAgICAgICAgIkNvcmVCeXRlIgogICAgICAgIH0sCiAgICAgICAgQ29udHJpYnV0b3JzID0gewogICAgICAgICAgICAiRG90dGVyIFRlYW0iCiAgICAgICAgfQogICAgfSwKCiAgICBEZXBlbmRlbmNpZXMgPSB7CiAgICAgICAgTHV2aXQgPSB7CiAgICAgICAgICAgIC0tIEx1dml0IGRlcGVuZGVuY2llcyAoInVzZXJuYW1lL3Byb2plY3RuYW1lIikKICAgICAgICB9LAogICAgICAgIER1YSA9IHsKICAgICAgICAgICAgLS0gRHVhIGRlcGVuZGVuY2llcyAoInByb2plY3RpZCIpCiAgICAgICAgfQogICAgfSwKCiAgICBDb250YWN0ID0gewogICAgICAgIFdlYnNpdGUgPSAiIiwgLS0gSG9tZXBhZ2UKICAgICAgICBTb3VyY2UgPSAiaHR0cHM6Ly9naXRodWIuY29tL0RvdC1sdWEvTG9nZ2VyIiwgLS0gR2l0aHViIHJlcHJvCiAgICAgICAgU29jaWFscyA9IHsKICAgICAgICAgICAgVHdpdHRlciA9ICIiLCAtLSBUd2l0dGVyIGxpbmsKICAgICAgICAgICAgRmFjZWJvb2sgPSAiIiwgLS0gRmFjZWJvb2sgbGluawogICAgICAgICAgICBEaXNjb3JkID0gIiIgLS0gRGlzY29yZCBzZXJ2ZXIgaW52aXRlCiAgICAgICAgfQogICAgfSwKCiAgICBJY29uID0gIiIsIC0tIEljb24gZm9yIHRoZSBwYWNrYWdlLCBub3QgdXNlZCBub3JtYWxseSBidXQgY2FuIGJlIHVzZWQgYnkgc29tZSBwcm9qZWN0cwogICAgRW52aXJvbm1lbnQgPSAiKiIsCiAgICBFbnRyeXBvaW50cyA9IHsKICAgICAgICBNYWluID0gIm5sLmN1YmljLWluYy5sb2dnZXIuVGVzdCIKICAgIH0KCn0K"
+    "/package.info.lua":"cmV0dXJuIHsNCg0KICAgIEluZm9WZXJzaW9uID0gMSwgLS0gRG9udCB0b3VjaCB0aGlzDQoNCiAgICBJRCA9ICJMb2dnZXIiLCAtLSBBIHVuaXF1ZSBpZCANCiAgICBWZXJzaW9uID0gIjAuMC4xIiwgLS0gVGhlIHBhY2thZ2UgdmVyc2lvbg0KDQoNCiAgICBOYW1lID0gIkxvZ2dlciIsIC0tIFRoZSBuYW1lIG9mIHRoZSBwcm9qZWN0LCBjYW4gdXNlIHNwYWNlcw0KICAgIERlc2NyaXB0aW9uID0gIlRoZSBEdWEgTG9nZ2VyIiwgLS0gRGVzY3JpcHRpb24NCg0KICAgIEF1dGhvciA9IHsNCiAgICAgICAgRGV2ZWxvcGVycyA9IHsNCiAgICAgICAgICAgICJDb3JlQnl0ZSINCiAgICAgICAgfSwNCiAgICAgICAgQ29udHJpYnV0b3JzID0gew0KICAgICAgICAgICAgIkRvdHRlciBUZWFtIg0KICAgICAgICB9DQogICAgfSwNCg0KICAgIERlcGVuZGVuY2llcyA9IHsNCiAgICAgICAgTHV2aXQgPSB7DQogICAgICAgICAgICAtLSBMdXZpdCBkZXBlbmRlbmNpZXMgKCJ1c2VybmFtZS9wcm9qZWN0bmFtZSIpDQogICAgICAgIH0sDQogICAgICAgIER1YSA9IHsNCiAgICAgICAgICAgIC0tIER1YSBkZXBlbmRlbmNpZXMgKCJwcm9qZWN0aWQiKQ0KICAgICAgICB9DQogICAgfSwNCg0KICAgIENvbnRhY3QgPSB7DQogICAgICAgIFdlYnNpdGUgPSAiIiwgLS0gSG9tZXBhZ2UNCiAgICAgICAgU291cmNlID0gImh0dHBzOi8vZ2l0aHViLmNvbS9Eb3QtbHVhL0xvZ2dlciIsIC0tIEdpdGh1YiByZXBybw0KICAgICAgICBTb2NpYWxzID0gew0KICAgICAgICAgICAgVHdpdHRlciA9ICIiLCAtLSBUd2l0dGVyIGxpbmsNCiAgICAgICAgICAgIEZhY2Vib29rID0gIiIsIC0tIEZhY2Vib29rIGxpbmsNCiAgICAgICAgICAgIERpc2NvcmQgPSAiIiAtLSBEaXNjb3JkIHNlcnZlciBpbnZpdGUNCiAgICAgICAgfQ0KICAgIH0sDQoNCiAgICBJY29uID0gIiIsIC0tIEljb24gZm9yIHRoZSBwYWNrYWdlLCBub3QgdXNlZCBub3JtYWxseSBidXQgY2FuIGJlIHVzZWQgYnkgc29tZSBwcm9qZWN0cw0KICAgIEVudmlyb25tZW50ID0gIioiLA0KICAgIEVudHJ5cG9pbnRzID0gew0KICAgICAgICBNYWluID0gIm5sLmN1YmljLWluYy5sb2dnZXIuVGVzdCINCiAgICB9DQoNCn0NCg=="
+  },
+  "Code":{
+    "nl.cubic-inc.logger.LoggerClass":"local Logger = Emitter:extend()\r\n\r\nlocal date = os.date\r\nlocal format = string.format\r\nlocal stdout = _G.process.stdout.handle\r\n\r\n\r\nlocal RED     = 31\r\nlocal YELLOW  = 33\r\nlocal GREEN   = 32\r\nlocal CYAN    = 36\r\n\r\nlocal config = {\r\n\t{'[ERROR]  ', RED},\r\n\t{'[WARNING]', YELLOW},\r\n\t{'[INFO]   ', GREEN},\r\n\t{'[DEBUG]  ', CYAN},\r\n}\r\n\r\nfunction Logger:initialize(Settings)\r\n\tSettings = Settings or {}\r\n    Settings.Debug = Settings.Debug or false\r\n\r\n    self.DebugMode = Settings.Debug\r\nend\r\n\r\ndo -- parse config\r\n\tlocal bold = 1\r\n\tfor _, v in ipairs(config) do\r\n\t\tv[2] = format('\\27[%i;%im%s\\27[0m', bold, v[2], v[1])\r\n\tend\r\nend\r\n\r\n\r\nfunction Logger:Log(level, msg)\r\n\r\n\tlocal tag = config[level]\r\n\tif not tag then return end\r\n\r\n\tlocal d = date(\"%Y-%m-%d %H:%M:%S\")\r\n\tstdout:write(format('[%s] %s: %s\\n', d, tag[2], msg))\r\n\r\n\treturn msg\r\n\r\nend\r\n\r\nfunction Logger:Error(Msg)\r\n\tself:Log(1, Msg)\r\n\tself:emit(\"Error\", Msg)\r\nend\r\n\r\nfunction Logger:Warn(Msg)\r\n\tself:Log(2, Msg)\r\n\tself:emit(\"Warning\", Msg)\r\nend\r\n\r\nfunction Logger:Info(Msg)\r\n\tself:Log(3, Msg)\r\n\tself:emit(\"Information\", Msg)\r\nend\r\n\r\nfunction Logger:Debug(Msg)\r\n\tif self.DebugMode == true then\r\n\t\tself:Log(4, Msg)\r\n\t\tself:emit(\"Debug\", Msg)\r\n\tend\r\nend\r\n\r\nreturn Logger",
+    "nl.cubic-inc.logger.Main":"local Logger = Import(\"nl.cubic-inc.logger.LoggerClass\")\r\n\r\nreturn Logger",
+    "nl.cubic-inc.logger.Test":"local Package = {}\r\n\r\nfunction Package.OnInitialize()\r\n    local Logger = Import(\"nl.cubic-inc.logger.Main\"):new({Debug = true})\r\n\r\n\r\n    Logger:on(\"Information\", print)\r\n\r\n    Logger:Info(\"test\", \"test\")\r\n    Logger:Warn(\"test\")\r\n    Logger:Error(\"test\")\r\n    Logger:Debug(\"test\")\r\n\r\nend\r\n\r\nreturn Package"
   },
   "PackageInfo":{
     "Name":"Logger",
     "Description":"The Dua Logger",
-    "Icon":"",
     "Author":{
       "Developers":["CoreByte"],
       "Contributors":["Dotter Team"]
     },
-    "Entrypoints":{
-      "Main":"nl.cubic-inc.logger.Test"
-    },
+    "ID":"Logger",
     "Dependencies":{
       "Dua":[],
       "Luvit":[]
     },
-    "ID":"Logger",
-    "Environment":"*",
+    "Entrypoints":{
+      "Main":"nl.cubic-inc.logger.Test"
+    },
     "Contact":{
+      "Website":"",
       "Source":"https://github.com/Dot-lua/Logger",
       "Socials":{
+        "Twitter":"",
         "Facebook":"",
-        "Discord":"",
-        "Twitter":""
-      },
-      "Website":""
+        "Discord":""
+      }
     },
+    "Environment":"*",
+    "Icon":"",
     "InfoVersion":1,
     "Version":"0.0.1"
   }
