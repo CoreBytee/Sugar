@@ -9,11 +9,14 @@ if not FS.existsSync("./Config.json") then
                 Debug = false,
                 WebServer = {
                     Host = "0.0.0.0",
-                    Port = 8080
+                    Port = 8080,
+                    PathName = "/control/"
                 },
                 WebClient = {
                     Host = "localhost",
-                    Port = 8080
+                    Port = 8080,
+                    TLS = true,
+                    PathName = "/control/"
                 }
             },
             {
@@ -27,7 +30,14 @@ end
 
 
 _G.Config = Json.decode(FS.readFileSync("./Config.json"))
-_G.Logger = Import("nl.cubic-inc.logger.Main"):new({Debug = Config.Debug})
+_G.Logger = Import("nl.cubic-inc.logger.Main"):new(
+    {
+        Debug = Config.Debug,
+        Out = function (self, Text)
+            print(Text)
+        end
+    }
+)
 
 _G.IsClient = Config.Type == "Client" and not (args[2] == "Server" or args[3] == "Server")
 _G.IsServer = Config.Type == "Server" or args[2] == "Server" or args[3] == "Server"
@@ -47,6 +57,9 @@ Logger:Info("██████████████████████�
 Logger:Info(string.format("█████▀▀▀ %s Edition ▀▀▀█████", RunningType))
 Logger:Info("█████ MADE BY : [REDACTED] █████")
 Logger:Info("▀██████████████████████████████▀")
+Logger:Info("")
+
+_G.RemoteCommand = Import("ga.corebyte.RemoteCommand.Main"):new()
 
 if IsClient then
     Import("ga.corebyte.Sugar.Boot.Client")

@@ -23,17 +23,11 @@ return function ()
     
     App.websocket(
         {
-            path = "/", -- Prefix for matching
+            path = Config.WebClient.PathName,
         },
         function (Request, Read, Write)
-            -- Log the request headers
-            p(req)
-            -- Log and echo all messages
-            for message in read do
-                write(message)
-            end
-            -- End the stream
-            write()
+            Write({payload = "Hello"})
+            Write()
         end
     )
     
