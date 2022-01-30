@@ -23,7 +23,8 @@ return {InfoVersion = 1,
             "creationix/coro-websocket",
             "creationix/coro-spawn",
 
-            "creationix/weblit"
+            "creationix/weblit",
+            "luvit/los"
         },
         Dua = {}
     },

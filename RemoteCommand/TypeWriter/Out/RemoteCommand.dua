@@ -1,18 +1,22 @@
 {
-  "Resources":{
-    "/package.info.lua":"LS0gU2VlIGh0dHBzOi8vZ2l0aHViLmNvbS9Eb3QtbHVhL1R5cGVXcml0ZXIvd2lraS9wYWNrYWdlLmluZm8ubHVhLWZvcm1hdCBmb3IgbW9yZSBpbmZvCgpyZXR1cm4ge0luZm9WZXJzaW9uID0gMSwgLS0gRG9udCB0b3VjaCB0aGlzCgogICAgSUQgPSAicmVtb3RlY29tbWFuZCIsCiAgICBWZXJzaW9uID0gIjEuMC4wIiwKCiAgICBOYW1lID0gIlJlbW90ZUNvbW1hbmQiLAogICAgRGVzY3JpcHRpb24gPSAiUmVtb3RlIENvbW1hbmQgaGVscGluZyBsaWJyYXJ5IiwKCiAgICBBdXRob3IgPSB7CiAgICAgICAgRGV2ZWxvcGVycyA9IHsKICAgICAgICAgICAgIkNvcmVCeXRlIgogICAgICAgIH0sCiAgICAgICAgQ29udHJpYnV0b3JzID0ge30KICAgIH0sCgogICAgRGVwZW5kZW5jaWVzID0gewogICAgICAgIEx1dml0ID0ge30sCiAgICAgICAgRHVhID0ge30KICAgIH0sCgogICAgQ29udGFjdCA9IHsKICAgICAgICBXZWJzaXRlID0gIiIsCiAgICAgICAgU291cmNlID0gIiIsCiAgICAgICAgU29jaWFscyA9IHt9CiAgICB9LAoKICAgIEVudHJ5cG9pbnRzID0gewogICAgICAgIE1haW4gPSAiZ2EuY29yZWJ5dGUuUmVtb3RlQ29tbWFuZC5UZXN0IgogICAgfQoKfQo="
+  "Code":{
+    "ga.corebyte.RemoteCommand.Test":"local Package = {}\n\nfunction Package.OnInitialize()\n\n    print(\"And The package has loaded!\")\n    print(\"Hello!\")\n\nend\n\nreturn Package\n",
+    "ga.corebyte.RemoteCommand.Main":"return Import(\"ga.corebyte.RemoteCommand.RemoteCommand\")",
+    "ga.corebyte.RemoteCommand.RemoteCommand":"local RemoteCommand = Class\r\n\r\nfunction RemoteCommand:initialize()\r\n    self.Commands = {}\r\nend\r\n\r\nfunction RemoteCommand:AddCommand(Name, Function)\r\n    self.Commands[Name] = {Run = Function}\r\nend\r\n\r\nfunction RemoteCommand:Handle(Data, Connection)\r\n    if self.Commands[Data.Name] then\r\n        Logger:Debug(\"Running command \" .. Data.Name)\r\n        coroutine.wrap(self.Commands[Data.Name].Run)(Data.Parameters, Connection)\r\n    else\r\n        Logger:Warn(\"Remote tried to fire a not existsing command.\")\r\n    end\r\nend\r\n\r\nfunction RemoteCommand:HandleRaw(Message, Connection)\r\n    \r\nend\r\n\r\nfunction RemoteCommand:Send(Name, Params)\r\n    return Json.encode({Name = Name, Parameters = Params})\r\nend\r\n\r\nreturn RemoteCommand\r\n"
   },
   "PackageInfo":{
     "Contact":{
+      "Socials":[],
       "Website":"",
-      "Source":"",
-      "Socials":[]
+      "Source":""
+    },
+    "Entrypoints":{
+      "Main":"ga.corebyte.RemoteCommand.Test"
     },
     "InfoVersion":1,
-    "Version":"1.0.0",
+    "ID":"remotecommand",
     "Name":"RemoteCommand",
     "Description":"Remote Command helping library",
-    "ID":"remotecommand",
     "Author":{
       "Contributors":[],
       "Developers":["CoreByte"]
@@ -21,13 +25,9 @@
       "Dua":[],
       "Luvit":[]
     },
-    "Entrypoints":{
-      "Main":"ga.corebyte.RemoteCommand.Test"
-    }
+    "Version":"1.0.0"
   },
-  "Code":{
-    "ga.corebyte.RemoteCommand.Test":"local Package = {}\n\nfunction Package.OnInitialize()\n\n    print(\"And The package has loaded!\")\n    print(\"Hello!\")\n\nend\n\nreturn Package\n",
-    "ga.corebyte.RemoteCommand.Main":"return Import(\"ga.corebyte.RemoteCommand.RemoteCommand\")",
-    "ga.corebyte.RemoteCommand.RemoteCommand":"local RemoteCommand = Class\n\nfunction RemoteCommand:initialize()\n    self.Commands = {}\nend\n\nfunction RemoteCommand:AddCommand(Name, Function)\n    self.Commands[Name] = {Run = Function}\nend\n\nfunction RemoteCommand:Handle(Data, Connection)\n    if Commands[Data.Name] then\n        Logger:Debug(\"Running command \" .. Data.Name)\n        coroutine.wrap(Commands[Data.Name].Run)(Data.Parameters, Connection)\n    else\n        Logger:Warn(\"Remote tried to fire a not existsing command.\")\n    end\nend\n\nfunction RemoteCommand:HandleRaw(Message, Connection)\n    \nend\n\nfunction RemoteCommand:Send(Name, Params)\n    return Json.encode({Name = Name, Parameters = Params})\nend\n\nreturn RemoteCommand"
+  "Resources":{
+    "/package.info.lua":"LS0gU2VlIGh0dHBzOi8vZ2l0aHViLmNvbS9Eb3QtbHVhL1R5cGVXcml0ZXIvd2lraS9wYWNrYWdlLmluZm8ubHVhLWZvcm1hdCBmb3IgbW9yZSBpbmZvCgpyZXR1cm4ge0luZm9WZXJzaW9uID0gMSwgLS0gRG9udCB0b3VjaCB0aGlzCgogICAgSUQgPSAicmVtb3RlY29tbWFuZCIsCiAgICBWZXJzaW9uID0gIjEuMC4wIiwKCiAgICBOYW1lID0gIlJlbW90ZUNvbW1hbmQiLAogICAgRGVzY3JpcHRpb24gPSAiUmVtb3RlIENvbW1hbmQgaGVscGluZyBsaWJyYXJ5IiwKCiAgICBBdXRob3IgPSB7CiAgICAgICAgRGV2ZWxvcGVycyA9IHsKICAgICAgICAgICAgIkNvcmVCeXRlIgogICAgICAgIH0sCiAgICAgICAgQ29udHJpYnV0b3JzID0ge30KICAgIH0sCgogICAgRGVwZW5kZW5jaWVzID0gewogICAgICAgIEx1dml0ID0ge30sCiAgICAgICAgRHVhID0ge30KICAgIH0sCgogICAgQ29udGFjdCA9IHsKICAgICAgICBXZWJzaXRlID0gIiIsCiAgICAgICAgU291cmNlID0gIiIsCiAgICAgICAgU29jaWFscyA9IHt9CiAgICB9LAoKICAgIEVudHJ5cG9pbnRzID0gewogICAgICAgIE1haW4gPSAiZ2EuY29yZWJ5dGUuUmVtb3RlQ29tbWFuZC5UZXN0IgogICAgfQoKfQo="
   }
 }

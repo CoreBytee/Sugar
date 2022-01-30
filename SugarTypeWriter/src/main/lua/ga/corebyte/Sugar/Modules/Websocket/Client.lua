@@ -1,7 +1,5 @@
-return function ()
+local function Connect()
     Logger:Info("Connecting to websocket")
-
-    _G.Connection = {}
 
     local Response, Read, Write = require("coro-websocket").connect(
         {
@@ -20,11 +18,56 @@ return function ()
     Connection.Write = Write
 
 
-    Logger:Info("Connected")
+    Logger:Info("Connected to websocket")
 
     while true do
         local Message = Read()
-        if Message.opcode == 8 then break end
+        if not Message then break end
         RemoteCommand:Handle(Json.decode(Message.payload))
+    end
+
+    Logger:Info("Disconnected from websocket")
+
+end
+
+local function CanConnect()
+    Logger:Info("Trying to ping host")
+    local Success, Response, Body = pcall(
+        require("coro-http").request,
+        "GET",
+        "http://" .. Config.WebClient.Host .. ":" .. Config.WebClient.Port .. "/ping/"
+    )
+
+    if Success then
+        if type(Response) == "table" then
+            if Response.code == 200 then
+                Logger:Info("Ping successful")
+                return true
+            else
+                Logger:Error("Code is not 200: " .. tostring(Response.code))
+                return false
+            end
+        else
+            Logger:Error("Response is not table")
+            return false
+        end
+    else
+        Logger:Error("Could not ping host: " .. tostring(Split(Response, ": ")[3]))
+        Logger:Debug("Full reason " .. Response)
+        return false
+    end
+
+end
+
+return function ()
+    
+    while true do
+        if CanConnect() then
+            Connect()
+        end
+
+        Logger:Info("Reconnecting in 10 seconds")
+
+        Wait(10)
     end
 end

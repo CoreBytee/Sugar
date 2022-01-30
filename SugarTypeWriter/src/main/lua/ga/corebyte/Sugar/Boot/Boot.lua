@@ -59,7 +59,7 @@ Logger:Info("█████ MADE BY : [REDACTED] █████")
 Logger:Info("▀██████████████████████████████▀")
 Logger:Info("")
 
-_G.RemoteCommand = Import("ga.corebyte.RemoteCommand.Main"):new()
+_G.RemoteCommand = Import("ga.corebyte.Sugar.Helpers.RemoteCommand"):new()
 
 if IsClient then
     Import("ga.corebyte.Sugar.Boot.Client")

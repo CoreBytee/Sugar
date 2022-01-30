@@ -4,7 +4,7 @@ function RemoteCommand:initialize()
     self.Commands = {}
 end
 
-function RemoteCommand:AddCommand(Name, Function)
+function RemoteCommand:Register(Name, Function)
     self.Commands[Name] = {Run = Function}
 end
 
@@ -13,7 +13,7 @@ function RemoteCommand:Handle(Data, Connection)
         Logger:Debug("Running command " .. Data.Name)
         coroutine.wrap(self.Commands[Data.Name].Run)(Data.Parameters, Connection)
     else
-        Logger:Warn("Remote tried to fire a not existsing command.")
+        Logger:Warn("Remote tried to fire '" .. Data.Name .. "' it does not exist")
     end
 end
 

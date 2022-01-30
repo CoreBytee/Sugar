@@ -20,13 +20,47 @@ return function ()
             Response.code = 200
         end
     )
+
+    App.route(
+        {
+            method = "GET",
+            path = "/ping/",
+        },
+        function (Request, Response)
+            Response.body = "Pong"
+            Response.code = 200
+        end
+    )
     
     App.websocket(
         {
             path = Config.WebClient.PathName,
         },
         function (Request, Read, Write)
-            Write({payload = "Hello"})
+
+            local Connection = {
+                Request = Request,
+                Read = Read,
+                Write = Write,
+
+                Id = #Connections + 1
+            }
+
+            table.insert(Connections, Connection)
+            Logger:Info("New connection with id " .. Connection.Id)
+            Logger:Info("Now running " .. #Connections .. " connection(s)")
+
+            for Message in Read do
+                
+                if #Message.payload ~= 0 then
+                    RemoteCommand:Handle(Json.decode(Message.payload))
+                end
+            end
+
+            Logger:Info("Disconnecting " .. Connection.Id)
+            Logger:Info("Now running " .. #Connections - 1 .. " connection(s)")
+            table.remove(Connections, Connection.Id)
+
             Write()
         end
     )
