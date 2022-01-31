@@ -22,6 +22,7 @@ return {InfoVersion = 1,
             "creationix/coro-http",
             "creationix/coro-websocket",
             "creationix/coro-spawn",
+            "creationix/sha1",
 
             "creationix/weblit",
             "luvit/los"

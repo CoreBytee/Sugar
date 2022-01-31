@@ -1,0 +1,19 @@
+[
+    {
+        "Name": "ffmpeg",
+        "chmod": true,
+        "Hash": "da09566ba946668e10b72ec873736d4b865500db",
+        "Url": "https://github.com/CoreBytee/Sugar/releases/download/2.0.0-binary/ffmpeg"
+    },
+    {
+        "Name": "ffplay",
+        "chmod": true,
+        "Hash": "f5737becdd57600220f26f52bd8719475c2d304c",
+        "Url": "https://github.com/CoreBytee/Sugar/releases/download/2.0.0-binary/ffplay"
+    },
+    {
+        "Name": "brightness",
+        "chmod": true,
+        "Url": "https://github.com/CoreBytee/Sugar/releases/download/2.0.0-binary/brightness"
+    }
+]
