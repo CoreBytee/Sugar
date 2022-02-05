@@ -39,6 +39,7 @@ function Brightness.Set(Value)
     )
 
     Result.waitExit()
+    return true
 end
 
 return Brightness

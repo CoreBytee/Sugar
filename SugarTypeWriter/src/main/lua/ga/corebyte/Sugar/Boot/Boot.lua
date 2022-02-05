@@ -59,6 +59,16 @@ Logger:Info("█████ MADE BY : [REDACTED] █████")
 Logger:Info("▀██████████████████████████████▀")
 Logger:Info("")
 
+function math.clamp(num, min, max)
+	if num < min then
+		num = min
+	elseif num > max then
+		num = max    
+	end
+	
+	return num
+end
+
 _G.RemoteCommand = Import("ga.corebyte.Sugar.Helpers.RemoteCommand"):new()
 
 if IsClient then

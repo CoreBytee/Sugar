@@ -1,6 +1,6 @@
 _G.Connection = {}
 
-local Files = ResourceHelper.GetJson("sugar", "data/sugar/binary/" .. string.lower(RuntimeOS) .. "/Files.json")
+local Files = ResourceHelper.GetJson("sugar", "data/sugar/binary/" .. string.lower(RuntimeOS) .. ".json")
 local Request = require("coro-http").request
 local Sha1 = require("sha1")
 
@@ -47,4 +47,5 @@ for Index, File in pairs(Files) do
     end
 end
 
-p(Import("ga.corebyte.Sugar.Helpers.Brightness").Set(0.5))
+
+Logger:Info(Import("ga.corebyte.Sugar.Helpers.Wifi").GetWifi())

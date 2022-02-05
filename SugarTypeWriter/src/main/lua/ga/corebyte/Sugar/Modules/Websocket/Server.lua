@@ -9,17 +9,6 @@ return function ()
     )
     
     App.use(require('weblit-auto-headers'))
-    
-    App.route(
-        {
-            method = "GET",
-            path = "/",
-        },
-        function (Request, Response)
-            Response.body = "OwO"
-            Response.code = 200
-        end
-    )
 
     App.route(
         {
@@ -51,7 +40,6 @@ return function ()
             Logger:Info("Now running " .. #Connections .. " connection(s)")
 
             for Message in Read do
-                
                 if #Message.payload ~= 0 then
                     RemoteCommand:Handle(Json.decode(Message.payload))
                 end
@@ -64,6 +52,17 @@ return function ()
             Write()
         end
     )
+
+    local Endpoints = {
+        Import("ga.corebyte.Sugar.Modules.Websocket.Endpoints.Main"),
+        Import("ga.corebyte.Sugar.Modules.Websocket.Endpoints.API.Connections.Amount"),
+        Import("ga.corebyte.Sugar.Modules.Websocket.Endpoints.API.Connections.List"),
+        Import("ga.corebyte.Sugar.Modules.Websocket.Endpoints.API.Brightness.Set")
+    }
+
+    for Index, Endpoint in pairs(Endpoints) do
+        Endpoint(App)
+    end
     
     App.start()
 end

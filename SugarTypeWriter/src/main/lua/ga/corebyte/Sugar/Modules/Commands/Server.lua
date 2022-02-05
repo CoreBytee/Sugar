@@ -6,4 +6,8 @@ return function ()
         p(Parameters)
         Logger:Info("")
     end)
+
+    RemoteCommand:Register("handshake", function (Parameters, Connection)
+        p("handshake")
+    end)
 end

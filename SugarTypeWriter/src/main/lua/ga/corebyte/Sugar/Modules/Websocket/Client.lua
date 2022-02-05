@@ -17,6 +17,14 @@ local function Connect()
     Connection.Read = Read
     Connection.Write = Write
 
+    Write(
+        {
+            payload = RemoteCommand:Send(
+                "handshake",
+                {}
+            )
+        }
+    )
 
     Logger:Info("Connected to websocket")
 
