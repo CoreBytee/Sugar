@@ -1,7 +1,0 @@
-{
-  "http.main.domain":"localhost",
-  "http.main.port":6126,
-  "http.test.domain":"localhost",
-  "http.test.port":6126,
-  "devmode.enabled":false
-}
