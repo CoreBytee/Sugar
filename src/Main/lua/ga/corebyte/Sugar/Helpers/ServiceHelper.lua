@@ -6,23 +6,20 @@ end
 
 function ServiceHelper:SetType(Type)
     self.Type = Type
+    return self
 end
 
-function ServiceHelper:Register(Func, Type, Priority)
-    table.insert(
-        self.Services,
-        {
-            Func = Func,
-            Type = Type,
-            Priority = Priority
-        }
-    )
+function ServiceHelper:Register(Service)
+    self.Services[Service.Priority] = Service
+    return self
 end
 
 local function StartService(Service)
-    coroutine.wrap(function ()
+    if Service.Sync == true then
         Service.Func()
-    end)()
+    else
+        coroutine.wrap(Service.Func)()
+    end
 end
 
 function ServiceHelper:StartServices()
@@ -36,4 +33,4 @@ function ServiceHelper:StartServices()
     end
 end
 
-return WorkHelper
+return ServiceHelper

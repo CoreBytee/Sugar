@@ -16,9 +16,6 @@ function Config:Read()
         local SplitLine = Line:split("=")
         local Key = SplitLine[1]
         local Value = table.concat(SplitLine, "=", 2)
-        p(SplitLine)
-        p(Key)
-        p(Value)
 
         local Num = tonumber(Value)
         if Num then
@@ -69,6 +66,7 @@ function Config:Parse()
     if WriteBack then
         self:Write(ConfigData)
     end
+    self.Data = ConfigData
     return self
 end
 
@@ -91,6 +89,11 @@ function Config:GetOption(Key)
         self:Parse()
     end
     return self.Data[Key]
+end
+
+function Config:SetOption(Key, Value)
+    self.Data[Key] = Value
+    self:Write(self.Data)
 end
 
 return Config

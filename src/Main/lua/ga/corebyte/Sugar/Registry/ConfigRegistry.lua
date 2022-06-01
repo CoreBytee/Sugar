@@ -1,6 +1,7 @@
 return function(Config)
     Config:AddOption("Debug", false, { "boolean" })
     Config:AddOption("DeveloperMode", false, { "boolean" })
+    Config:AddOption("Type", "Sugar", { "boolean" })
 
     Config:AddLine()
 
