@@ -1,3 +1,9 @@
+local ConfigHelper = Import("ga.corebyte.Sugar.Helpers.Config")
+local ServiceHelper = Import("ga.corebyte.Sugar.Helpers.ServiceHelper")
+local ConfigRegistry = Import("ga.corebyte.Sugar.Registry.ConfigRegistry")
+
 _G.Sugar = {
-    Config = Import("ga.corebyte.Sugar.Registry.ConfigRegistry")(Import("ga.corebyte.Sugar.Helpers.Config"):new(TypeWriter.Here .. "/Sugar.properties")):Parse()
+    Config = ConfigRegistry(ConfigHelper:new(TypeWriter.Here .. "/Sugar.properties")):Parse(),
+    ServiceManager = ServiceHelper:new()
 }
+
