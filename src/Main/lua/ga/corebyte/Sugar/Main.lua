@@ -1,12 +1,14 @@
--- Helpers
-local ConfigHelper = Import("ga.corebyte.Sugar.Helpers.Config")
-local ServiceHelper = Import("ga.corebyte.Sugar.Helpers.ServiceHelper")
+-- Load libraries
+TypeWriter.Runtime.LoadInternal("BetterEmitter")
+-- Libraries
+local Config = Import("ga.corebyte.Sugar.Libraries.Config")
+local ServiceManager = Import("ga.corebyte.Sugar.Libraries.ServiceManager")
 -- Registry
 local ConfigRegistry = Import("ga.corebyte.Sugar.Registry.ConfigRegistry")
 local ServiceRegistry = Import("ga.corebyte.Sugar.Registry.ServiceRegistry")
 
 _G.Sugar = {}
-Sugar.Config = ConfigRegistry(ConfigHelper:new(TypeWriter.Here .. "/Sugar.properties")):Parse()
+Sugar.Config = ConfigRegistry(Config:new(TypeWriter.Here .. "/Sugar.properties")):Parse()
 local ConfigType = Sugar.Config:GetOption("Type")
 if ConfigType ~= "Sugar" or ConfigType ~= "SugarBowl" then
     Sugar.Config:SetOption("Type", "Sugar")
@@ -21,4 +23,4 @@ if TypeWriter.ArgumentParser:GetArgument("server", "server", "false") == "true" 
     ConfigType = "SugarBowl"
 end
 Sugar.Type = ConfigType
-Sugar.ServiceManager = ServiceRegistry(ServiceHelper:new():SetType(ConfigType)):StartServices()
+Sugar.ServiceManager = ServiceRegistry(ServiceManager:new():SetType(ConfigType)):StartServices()
