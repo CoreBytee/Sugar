@@ -5,24 +5,24 @@ return function(Config)
 
     Config:AddLine()
 
-    Config:AddOption("Sugar.Main.Host", "sugar.corebyte.ga", { "string" })
-    Config:AddOption("Sugar.Main.Port", 6126, { "number" })
+    Config:AddOption("Sugar.Main.Host", "sugar.corebyte.ga")
+    Config:AddOption("Sugar.Main.Port", 6126)
 
     Config:AddLine()
 
 
-    Config:AddOption("Sugar.Test.Host", "sugar.corebyte.ga", { "string" })
-    Config:AddOption("Sugar.Test.Port", 6126, { "number" })
+    Config:AddOption("Sugar.Test.Host", "localhost")
+    Config:AddOption("Sugar.Test.Port", 6126)
 
     Config:AddLine()
 
-    Config:AddOption("SugarBowl.Host", "0.0.0.0", { "string" })
-    Config:AddOption("SugarBowl.Port", 6126, { "number" })
+    Config:AddOption("SugarBowl.Host", "0.0.0.0")
+    Config:AddOption("SugarBowl.Port", 6126)
 
     Config:AddLine()
 
-    Config:AddOption("Spoon.IsSpoon", false, { "boolean" })
-    Config:AddOption("Spoon.Key", "", { "string" })
+    Config:AddOption("Spoon.IsSpoon", false)
+    Config:AddOption("Spoon.Key", "")
 
     return Config
 end
