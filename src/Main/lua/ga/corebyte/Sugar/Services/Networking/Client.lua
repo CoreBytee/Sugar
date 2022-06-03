@@ -11,8 +11,10 @@ return function ()
         while true do
             if Websocket:CanConnect(PingUrl) then
                 Websocket:Connect()
+                TypeWriter.Logger.Info("Reconnecting in 5 seconds...")
             else
                 TypeWriter.Logger.Warn("Could not connect to %s", ConnectionUrl)
+                TypeWriter.Logger.Info("Reconnecting in 5 seconds...")
             end
             Wait(5)
         end
