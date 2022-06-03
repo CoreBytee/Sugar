@@ -17,9 +17,9 @@ return function ()
         "Connection",
         function (Socket)
             Wait(1)
-            Socket:Send("Echo", "Hello World")
+            p(Socket:Send("Echo", "Hello World"))
         end
     )
 
-    self.SocketServer = SocketServer
+    Sugar.SocketServer = SocketServer
 end

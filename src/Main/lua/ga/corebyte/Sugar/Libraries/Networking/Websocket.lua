@@ -1,6 +1,7 @@
 local Websocket = Import("ga.corebyte.BetterEmitter"):extend()
 
 local CoroWebsocket = require("coro-websocket")
+local Request = require("coro-http").request
 local Json = require("json")
 
 function Websocket:initialize(Url)
@@ -10,6 +11,11 @@ function Websocket:initialize(Url)
         Options = CoroWebsocket.parseUrl(Url)
     }
     self.Events = {}
+end
+
+function Websocket:CanConnect(PingUrl)
+    local Success, Response = pcall(Request, "GET", PingUrl)
+    return Success and Response.code == 200
 end
 
 function Websocket:Connect()
@@ -27,16 +33,15 @@ function Websocket:Connect()
         Read = Read,
         Write = Write
     }
-    coroutine.wrap(function ()
-        for Message in Read do
-            local Payload = Message.payload or ""
-            if #Payload > 0 then
-                self:Emit("RawMessage", Payload)
-            end
+    self:Emit("Connected")
+    for Message in Read do
+        local Payload = Message.payload or ""
+        if #Payload > 0 then
+            self:Emit("RawMessage", Payload)
         end
-        self.Connection = nil
-        TypeWriter.Logger.Info("Disconnected")
-    end)()
+    end
+    self.Connection = nil
+    TypeWriter.Logger.Info("Disconnected")
 end
 
 function Websocket:Send(Name, ...)
@@ -53,6 +58,10 @@ function Websocket:Send(Name, ...)
             )
         }
     )
+    local Data = {self:WaitFor("Response", nil, function (IncomingSequence)
+        return IncomingSequence == Sequence
+    end)}
+    return table.unpack(Data[3])
 end
 
 function Websocket:AddHandler(Name, Func)

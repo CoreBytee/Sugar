@@ -30,8 +30,11 @@ function Socket:Send(Name, ...)
                 }
             )
         }
-        
     )
+    local Data = {self:WaitFor("Response", nil, function (IncomingSequence)
+        return IncomingSequence == Sequence
+    end)}
+    return table.unpack(Data[3])
 end
 
 return Socket

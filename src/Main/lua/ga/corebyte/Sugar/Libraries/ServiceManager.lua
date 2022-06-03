@@ -23,7 +23,13 @@ local function StartService(Service)
 end
 
 function ServiceHelper:StartServices()
+    local Priorities = {}
     for Index, Service in pairs(self.Services) do
+        table.insert(Priorities, Service.Priority)
+    end
+    table.sort(Priorities)
+    for Index, Priority in pairs(Priorities) do
+        local Service = self.Services[Priority]
         if Service.Type == true then
             StartService(Service)
         end

@@ -14,7 +14,6 @@ return function (Obj)
     Obj:On(
         "DecodedMessage",
         function (Data)
-            p(Data)
             if Data.Type == "Message" then
                 Obj:Emit(
                     "Message",
