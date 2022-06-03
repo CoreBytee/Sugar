@@ -1,5 +1,6 @@
 return function ()
     local WebServer = Import("ga.corebyte.Sugar.Libraries.Networking.WebServer"):new()
+    local SocketServer = WebServer:Socket({path = "/socket"})
     WebServer:Route(
         {
             method = "GET",
@@ -11,4 +12,14 @@ return function ()
         end
     )
     WebServer:Start()
+
+    SocketServer:On(
+        "Connection",
+        function (Socket)
+            Wait(1)
+            Socket:Send("Echo", "Hello World")
+        end
+    )
+
+    self.SocketServer = SocketServer
 end

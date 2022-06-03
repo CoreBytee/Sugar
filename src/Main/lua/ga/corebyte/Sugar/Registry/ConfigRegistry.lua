@@ -7,12 +7,15 @@ return function(Config)
 
     Config:AddOption("Sugar.Main.Host", "sugar.corebyte.ga")
     Config:AddOption("Sugar.Main.Port", 6126)
+    Config:AddOption("Sugar.Main.TLS", true)
 
     Config:AddLine()
 
 
     Config:AddOption("Sugar.Test.Host", "localhost")
     Config:AddOption("Sugar.Test.Port", 6126)
+    Config:AddOption("Sugar.Test.TLS", false)
+
 
     Config:AddLine()
 

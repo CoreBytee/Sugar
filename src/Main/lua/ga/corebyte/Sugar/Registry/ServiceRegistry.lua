@@ -10,13 +10,21 @@ local Services = {
         Name = "NetworkClient",
         Type = "Sugar",
         Priority = 100,
-        Func = Import("ga.corebyte.Sugar.Services.Networking.Client")
+        Func = Import("ga.corebyte.Sugar.Services.Networking.Client"),
+        Sync = true
     },
     {
         Name = "NetworkServer",
         Type = "SugarBowl",
         Priority = 101,
-        Func = Import("ga.corebyte.Sugar.Services.Networking.Server")
+        Func = Import("ga.corebyte.Sugar.Services.Networking.Server"),
+        Sync = true
+    },
+    {
+        Name = "EchoCommand",
+        Type = "Sugar",
+        Priority = 200,
+        Func = Import("ga.corebyte.Sugar.Services.Commands.Echo"),
     }
 }
 

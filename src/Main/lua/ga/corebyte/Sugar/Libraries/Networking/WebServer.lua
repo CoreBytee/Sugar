@@ -4,6 +4,7 @@ local SocketServer = Import("ga.corebyte.Sugar.Libraries.Networking.SocketServer
 
 function WebServer:initialize()
     local App = require("weblit").app
+    require("weblit-websocket")
 
     App.bind(
         {
