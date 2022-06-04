@@ -21,5 +21,7 @@ return function ()
         end
     )
 
+    SocketServer:WaitFor("Connection")
+
     Sugar.SocketServer = SocketServer
 end
