@@ -1,36 +1,23 @@
+--#region Services
 local Services = {
-    {
-        Name = "Banner",
-        Type = true,
-        Priority = 1,
-        Func = Import("ga.corebyte.Sugar.Services.Banner"),
-        Sync = true
-    },
-    {
-        Name = "NetworkClient",
-        Type = "Sugar",
-        Priority = 100,
-        Func = Import("ga.corebyte.Sugar.Services.Networking.Client"),
-        Sync = true
-    },
-    {
-        Name = "NetworkServer",
-        Type = "SugarBowl",
-        Priority = 101,
-        Func = Import("ga.corebyte.Sugar.Services.Networking.Server"),
-        Sync = true
-    },
-    {
-        Name = "EchoCommand",
-        Type = "Sugar",
-        Priority = 200,
-        Func = Import("ga.corebyte.Sugar.Services.Commands.Echo"),
-    }
+    Banner = Import("ga.corebyte.Sugar.Services.Banner"),
+    NetworkClient = Import("ga.corebyte.Sugar.Services.Networking.Client"),
+    ClientHandshake = Import("ga.corebyte.Sugar.Services.Networking.ClientHandshake"),
+    NetworkServer = Import("ga.corebyte.Sugar.Services.Networking.Server"),
+    EchoCommand = Import("ga.corebyte.Sugar.Services.Commands.Echo")
 }
-
+--#endregion
 return function (ServiceManager)
-    for Index, Service in pairs(Services) do
-        ServiceManager:Register(Service)
-    end
+--#region Register Client Services
+    ServiceManager:RegisterClientService(Services.Banner)
+    ServiceManager:RegisterClientService(Services.NetworkClient, true)
+    ServiceManager:RegisterClientService(Services.ClientHandshake)
+    ServiceManager:RegisterClientService(Services.EchoCommand)
+--#endregion
+--#region Register Server Services
+    ServiceManager:RegisterServerService(Services.Banner)
+    ServiceManager:RegisterServerService(Services.NetworkServer, true)
+
+--#endregion
     return ServiceManager
 end

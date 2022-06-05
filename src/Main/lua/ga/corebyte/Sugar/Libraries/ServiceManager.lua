@@ -2,6 +2,8 @@ local ServiceHelper = Object:extend()
 
 function ServiceHelper:initialize()
     self.Services = {}
+    self.Services.Client = {}
+    self.Services.Server = {}
 end
 
 function ServiceHelper:SetType(Type)
@@ -9,33 +11,47 @@ function ServiceHelper:SetType(Type)
     return self
 end
 
-function ServiceHelper:Register(Service)
-    self.Services[Service.Priority] = Service
-    return self
+function ServiceHelper:RegisterClientService(ServiceRunner, Sync)
+    if Sync == nil then
+        Sync = false
+    end
+    table.insert(
+        self.Services.Client, {
+            ServiceRunner = ServiceRunner,
+            Sync = Sync
+        }
+    )
+end
+
+function ServiceHelper:RegisterServerService(ServiceRunner, Sync)
+    if Sync == nil then
+        Sync = false
+    end
+    table.insert(
+        self.Services.Server, {
+            ServiceRunner = ServiceRunner,
+            Sync = Sync
+        }
+    )
 end
 
 local function StartService(Service)
     if Service.Sync == true then
-        Service.Func()
+        Service.ServiceRunner()
     else
-        coroutine.wrap(Service.Func)()
+        coroutine.wrap(Service.ServiceRunner)()
     end
 end
 
 function ServiceHelper:StartServices()
-    local Priorities = {}
-    for Index, Service in pairs(self.Services) do
-        table.insert(Priorities, Service.Priority)
+    local Type
+    if self.Type == "Sugar" then
+        Type = "Client"
+    elseif self.Type == "SugarBowl" then
+        Type = "Server"
     end
-    table.sort(Priorities)
-    for Index, Priority in pairs(Priorities) do
-        local Service = self.Services[Priority]
-        if Service.Type == true then
-            StartService(Service)
-        end
-        if Service.Type == self.Type then
-            StartService(Service)
-        end
+    for Index, Service in pairs(self.Services[Type]) do
+        StartService(Service)
     end
 end
 
