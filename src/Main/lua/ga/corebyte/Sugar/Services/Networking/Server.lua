@@ -16,12 +16,9 @@ return function ()
     SocketServer:On(
         "Connection",
         function (Socket)
-            Wait(1)
             p(Socket:Send("Echo", "Hello World"))
         end
     )
-
-    SocketServer:WaitFor("Connection")
 
     Sugar.SocketServer = SocketServer
 end
