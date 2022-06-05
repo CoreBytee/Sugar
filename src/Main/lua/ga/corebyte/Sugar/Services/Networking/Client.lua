@@ -7,6 +7,8 @@ return function ()
     local Websocket = Import("ga.corebyte.Sugar.Libraries.Networking.Websocket"):new("ws://localhost:6126/socket")
     Sugar.Websocket = Websocket
 
+    Wait(0.5)
+
     coroutine.wrap(function ()
         while true do
             if Websocket:CanConnect(PingUrl) then
@@ -19,5 +21,4 @@ return function ()
             Wait(5)
         end
     end)()
-    Websocket:WaitFor("Connected")
 end
