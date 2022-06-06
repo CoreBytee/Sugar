@@ -35,10 +35,6 @@ return function (Obj)
         "Message",
         function (Name, Sequence, Payload)
             if Obj.Events == nil then return end
-            if Obj.Events[Name] == nil then
-                TypeWriter.Logger.Error("No event handler for %s", Name)
-                return
-            end
 
             local Returned = false
             local function Return(...)
@@ -55,10 +51,16 @@ return function (Obj)
                 )
                 Returned = true
             end
-            Obj.Events[Name](
-                Payload,
-                Return
-            )
+            if Obj.Events[Name] ~= nil then
+                Obj.Events[Name](
+                    Payload,
+                    Return,
+                    Obj
+                )
+            else
+                p(Payload)
+                TypeWriter.Logger.Error("No event handler for %s", Name)
+            end
             if Returned == false then
                 Return(nil)
             end
