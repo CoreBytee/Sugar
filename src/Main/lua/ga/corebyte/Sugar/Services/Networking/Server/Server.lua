@@ -12,13 +12,5 @@ return function ()
         end
     )
     WebServer:Start()
-
-    SocketServer:On(
-        "Connection",
-        function (Socket)
-            p(Socket:Send("Echo", "Hello World"))
-        end
-    )
-
     Sugar.SocketServer = SocketServer
 end
