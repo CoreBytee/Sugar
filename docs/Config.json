@@ -1,0 +1,26 @@
+{
+    "localhost": {
+        "API": {
+            "Host": "localhost",
+            "Port": 6126,
+            "TLS": false
+        },
+        "Dashboard": {
+            "Host": "localhost",
+            "Port": 80,
+            "TLS": false
+        }
+    },
+    "dashboard.sugar.corebyte.ga": {
+        "API": {
+            "Host": "sugar.corebyte.ga",
+            "Port": 80,
+            "TLS": true
+        },
+        "Dashboard": {
+            "Host": "dashboard.sugar.corebyte.ga",
+            "Port": 80,
+            "TLS": true
+        }
+    }
+}
