@@ -1,0 +1,29 @@
+.Block {
+    background-color: var(--Primary-Color);
+    border-color: var(--Secondary-Color);
+    border-width: 5px;
+    border-style: solid;
+    margin-right: 0;
+}
+
+.Center-Text {
+    text-align: center;
+}
+
+.Block-Holder {
+    height: 100%;
+    display: inline-block;
+}
+
+.Block-Title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 200%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: var(--Title-Text-Color)
+}
+
+.Block-Title-First {
+    margin-top: 10px
+}

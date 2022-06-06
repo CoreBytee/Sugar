@@ -1,0 +1,15 @@
+@import url("/style/Main/Colors.css");
+@import url("/style/Main/FullSize.css");
+@import url("/style/Main/Blocks.css");
+@import url("/style/Main/Entry.css");
+
+* { 
+    background-color: var(--Primary-Color);
+    color: var(--Text-Color);
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+}
