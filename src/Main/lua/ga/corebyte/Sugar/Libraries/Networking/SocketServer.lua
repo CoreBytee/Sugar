@@ -7,6 +7,10 @@ function SocketServer:initialize()
     self.Events = {}
 end
 
+function SocketServer:GetConnections()
+    return self.Connections
+end
+
 function SocketServer:NewConnection(Connection)
     local NewSocket = Socket:new(Connection)
     NewSocket.Events = self.Events
