@@ -15,6 +15,7 @@ function SocketServer:NewConnection(Connection)
     local NewSocket = Socket:new(Connection)
     NewSocket.Events = self.Events
     local SocketId = #self.Connections + 1
+    NewSocket.Id = SocketId
     self.Connections[SocketId] = NewSocket
     TypeWriter.Logger.Info("Client %s connected", SocketId)
     NewSocket:On(

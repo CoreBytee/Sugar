@@ -10,7 +10,10 @@ local Services = {
     Server = {
         Banner = Import("ga.corebyte.Sugar.Services.Banner"),
         NetworkServer = Import("ga.corebyte.Sugar.Services.Networking.Server.Server"),
-        ServerHandshake = Import("ga.corebyte.Sugar.Services.Networking.Server.ServerHandshake")
+        ServerHandshake = Import("ga.corebyte.Sugar.Services.Networking.Server.ServerHandshake"),
+        API = {
+            Connections = Import("ga.corebyte.Sugar.Services.Networking.Server.API.Connections")
+        }
     }
 }
 --#endregion
@@ -26,6 +29,9 @@ return function (ServiceManager)
     ServiceManager:RegisterServerService(Services.Server.Banner)
     ServiceManager:RegisterServerService(Services.Server.NetworkServer, true)
     ServiceManager:RegisterServerService(Services.Server.ServerHandshake)
+
+    --API
+    ServiceManager:RegisterServerService(Services.Server.API.Connections)
 --#endregion
     return ServiceManager
 end

@@ -13,4 +13,5 @@ return function ()
     )
     WebServer:Start()
     Sugar.SocketServer = SocketServer
+    Sugar.WebServer = WebServer
 end

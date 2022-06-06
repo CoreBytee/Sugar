@@ -15,6 +15,7 @@ function WebServer:initialize()
     
     App.use(require('weblit-logger'))
     App.use(require('weblit-auto-headers'))
+    App.use(require("weblit-cors"))
     
     self.App = App
 end
