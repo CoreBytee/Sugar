@@ -16,3 +16,5 @@ async function JsonRequest(Url, Method="GET", Headers={}, Data=null) {
 
 globalThis.WebRequest = WebRequest
 globalThis.JsonRequest = JsonRequest
+
+export { WebRequest, JsonRequest }
