@@ -13,7 +13,8 @@
         <script src="/script/Request.js" type="module"></script>
         <script src="/script/Globals.js" type="module"></script>
         <script src="/script/API.js" type="module"></script>
-        <script src="/script/ConnectionSelect.js" type="module"></script>
+        <script src="/script/Main/ConnectionSelect.js" type="module"></script>
+        <script src="/script/Main/ModuleSelect.js"></script>
     </head>
     <body>
         <div class="Block-Holder" style="width: 15%; float: left;">
@@ -30,10 +31,11 @@
         <div class="Block-Holder" style="width: 15%; float: left;">
             <div class="Block" style="height: 10%;">
                 <p class="Block-Title Block-Title-First">Modules</p>
-                <p class="Block-Title" style="font-size: 100%;">Loaded ...</p>
+                <p class="Block-Title" style="font-size: 100%;" id="ModuleCount">Loaded ...</p>
             </div>
 
-            <div class="Block" style="height: 90%;">
+            <div class="Block" style="height: 90%;" id="ModuleList">
+                <p class="Table-Entry" id="ModuleTemplate" onclick="ModuleClick(1)">Module</p>
             </div>
         </div>
 
@@ -43,7 +45,8 @@
                 <p class="Block-Title" style="font-size: 100%;">Version 1.0.0</p>
             </div>
 
-            <div class="Block" style="height: 90%;">
+            <div class="Block" style="height: 90%; padding: 20px;">
+                <iframe src="/modules/Welcome/" frameborder="0" style="height: 100%; width: 100%" id="ModuleFrame"></iframe>
             </div>
         </div>
 
