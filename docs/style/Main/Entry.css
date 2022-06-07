@@ -2,6 +2,7 @@
     text-align: center;
     font-weight: bold;
     user-select: none;
+    font-size: 100%;
 }
 
 .Selected-Entry {

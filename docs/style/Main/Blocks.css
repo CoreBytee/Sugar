@@ -21,7 +21,8 @@
     font-size: 200%;
     margin-top: 0px;
     margin-bottom: 0px;
-    color: var(--Title-Text-Color)
+    color: var(--Title-Text-Color);
+    user-select: none;
 }
 
 .Block-Title-First {
