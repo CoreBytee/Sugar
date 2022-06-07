@@ -3,5 +3,10 @@
         "Name": "Welcome",
         "Description": "Welcome to the world of the future",
         "Url": "/modules/Welcome/"
+    },
+    {
+        "Name": "PingTest",
+        "Description": "Test the connection",
+        "Url": "/modules/PingTest/"
     }
 ]

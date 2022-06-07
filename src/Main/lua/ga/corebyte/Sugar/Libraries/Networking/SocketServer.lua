@@ -32,4 +32,16 @@ function SocketServer:AddHandler(Name, Func)
     self.Events[Name] = Func
 end
 
+function SocketServer:SendToAll(Name, ...)
+    for _, Connection in pairs(self.Connections) do
+        coroutine.wrap(
+            function ()
+                Connection:Send(Name, ...)
+            end
+        )()
+    end
+end
+    
+end
+
 return SocketServer
